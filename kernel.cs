@@ -6,42 +6,40 @@ namespace os
 		}
 		unsafe public static void hline(int x,int y, int x2,int colorss) 
 		{
-		int f;
-int xx1=x;
-int xx2=x2;
-int xx3=x;
-int yy=y;
-int steeps;
-int location;
-int addss;
-char *fbp=(char * )0x04100000;
+			int f;
+			int xx1=x;
+			int xx2=x2;
+			int xx3=x;
+			int yy=y;
+			int steeps;
+			int location;
+			int addss;
+			char *fbp=(char * )0x04100000;
 			   int ii=colorss & 0xff;
 			   int iii=((colorss >> 8) & 0xff);
 			   char c1=(char) ii;
 			   char c2=(char) iii;
 
-if(xx2<xx1){
-xx1=xx2;
-xx2=xx3;
-}
-if(yy<0)yy=0;
-if(yy>479)yy=479;
-if(xx1<0)xx1=0;
-if(xx2<0)xx2=0;
-if(xx1>639)xx1=639;
-if(xx2>639)xx2=639;
+			if(xx2<xx1){
+				xx1=xx2;
+				xx2=xx3;
+			}
+			if(yy<0)yy=0;
+			if(yy>479)yy=479;
+			if(xx1<0)xx1=0;
+			if(xx2<0)xx2=0;
+			if(xx1>639)xx1=639;
+			if(xx2>639)xx2=639;
                        
-location =  (640 *2) * y + (x*2);
-steeps=xx2-xx1;
-addss=1;
-for(f=0;f<steeps;f++){
+			location =  (640 *2) * y + (x*2);
+			steeps=xx2-xx1;
+			addss=1;
+			for(f=0;f<steeps;f++){
  			    *((char *)(fbp + + location)) =c1;
 			    *((char *)(fbp + + location+1)) =c2;
-
-
-
-location=location+addss;
-}
+		
+				location=location+addss;
+			}
 		
 		
 		}
