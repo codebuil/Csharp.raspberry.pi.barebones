@@ -1,28 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace screens
 {
-    internal class Program
+    class Program
     {
 
-        
+		public static int adds(int a,int b){
+			return a+b;
+		}
         static void Main(string[] args)
 
         {
-           string memory = "hello world...\n";
+           string memory = "10+10={0} \n";
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.Clear();
-			Console.Write(memory);
+			Console.Write(memory,screens.Program.adds(10,10));
            
 
-            Console.ReadLine();
+            
 
         }
     }
