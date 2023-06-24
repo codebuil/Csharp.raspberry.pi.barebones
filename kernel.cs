@@ -2,7 +2,7 @@ namespace os
 {
 	public class oss
 	{	public static int rgb(int r, int g,int b){
-				return (r & 63)<<11 | (g & 63) << 5 | (b & 63);
+				return ((r & 63)<<11) | ((g & 63) << 5) | (b & 63);
 		}
 		unsafe public static void boxs(int x,int y,int x2,int y2,int colorss)
 		{
