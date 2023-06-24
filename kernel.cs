@@ -4,6 +4,42 @@ namespace os
 	{	public static int rgb(int r, int g,int b){
 				return (r & 63)<<11 | (g & 63) << 5 | (b & 63);
 		}
+		unsafe public static void vline(int x,int y,int y2,int colorss){
+int f;
+int yy1=y;
+int yy2=y2;
+int yy3=y;
+int xx=x;
+int steeps;
+int location;
+int addss;
+			char *fbp=(char * )0x04100000;
+			   int ii=colorss & 0xff;
+			   int iii=((colorss >> 8) & 0xff);
+			   char c1=(char) ii;
+			   char c2=(char) iii;
+
+if(yy2<yy1){
+yy1=yy2;
+yy2=yy3;
+}
+if(xx<0)xx=0;
+if(xx>639)xx=639;
+if(yy1<0)yy1=0;
+if(yy2<0)yy2=0;
+if(yy1>479)yy1=479;
+if(yy2>479-1)yy2=479;
+                       
+location =  640 * y + x;
+steeps=yy2-yy1;
+addss=640;
+for(f=0;f<steeps;f++){
+ 			    *((char *)(fbp +  location)) =c1;
+			    *((char *)(fbp +  location+1)) =c2;
+
+location=location+addss;
+}
+}
 		unsafe public static void hline(int x,int y, int x2,int colorss) 
 		{
 			int f;
@@ -35,8 +71,8 @@ namespace os
 			steeps=xx2-xx1;
 			addss=1;
 			for(f=0;f<steeps;f++){
- 			    *((char *)(fbp + + location)) =c1;
-			    *((char *)(fbp + + location+1)) =c2;
+ 			    *((char *)(fbp + location)) =c1;
+			    *((char *)(fbp +  location+1)) =c2;
 		
 				location=location+addss;
 			}
@@ -66,6 +102,7 @@ namespace os
 			int n=0;
 			clear(color1);
 			for(n=0;n<479;n=n+8)hline(0,n,639,color2);
+			for(n=0;n<639;n=n+8)vline(n,0,479,color2);
 			while(true){}
 			} 
 
