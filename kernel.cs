@@ -132,8 +132,8 @@ namespace os
 			   int ii=colorss & 0xffff;
 			   short c1=(short) ii;
 			   short *fbp=(short * )0x04100000;
-			   for(int i = 0; i < 640 * 480 * 2 ; i=i+2){
-			    *((short *)(fbp + i)) =c1;
+			   for(int i = 0; i < 640 * 480 ; i++){
+			    *((short *)(fbp +i)) =c1;
 			    
 			    
 			   
