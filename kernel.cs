@@ -84,7 +84,7 @@ namespace os
 			if(yy1>479)yy1=479;
 			if(yy2>479-1)yy2=479;
                        
-			location =  640 * y + x;
+			location =  (640*2) * y + (x*2);
 			steeps=yy2-yy1;
 			addss=640;
 			for(f=0;f<steeps;f++){
