@@ -2,7 +2,7 @@ namespace os
 {
 	public class oss
 	{	public static int rgb(int r, int g,int b){
-				return ((r & 63)*1024) | ((g & 63) *16) | (b & 63);
+				return ((r & 63)*2048) | ((g & 63) *32) | (b & 63);
 		}
 		unsafe public static void boxs(int x,int y,int x2,int y2,int colorss)
 		{
@@ -20,11 +20,9 @@ namespace os
 			int location;
 			int addss;
 			int addss2;
-			char *fbp=(char * )0x04100000;
-			   int ii=colorss & 0xff;
-			   int iii=((colorss /256) & 0xff);
-			   char c1=(char) ii;
-			   char c2=(char) iii;
+			short *fbp=(short * )0x04100000;
+			   int ii=colorss & 0xffff;
+			   short c1=(short) ii;
 			if(xx2<xx1){
 				xx1=xx2;
 				xx2=xx3;
@@ -42,7 +40,7 @@ namespace os
 			if(xx1>639)xx1=639;
 			if(xx2>639)xx2=639;
                        
-			location =  (640*2) * y + (x*2);
+			location =  (640) * y + (x);
 			steeps2=xx2-xx1;
 			steeps=yy2-yy1;
 			addss=1;
@@ -50,8 +48,8 @@ namespace os
 			if(addss2<addss)addss2=0;
 			for(f=0;f<steeps;f++){
 				for(ff=0;ff<steeps2;ff++){
-					*((char *)(fbp +  location)) =c1;
-					*((char *)(fbp +  location+1)) =c2;
+					*((short *)(fbp +  location)) =c1;
+
 					location=location+addss;
 				}
 				location=location+addss2;
@@ -67,11 +65,9 @@ namespace os
 			int steeps;
 			int location;
 			int addss;
-			char *fbp=(char * )0x04100000;
-			   int ii=colorss & 0xff;
-			   int iii=((colorss /256) & 0xff);
-			   char c1=(char) ii;
-			   char c2=(char) iii;
+			short *fbp=(short * )0x04100000;
+			   int ii=colorss & 0xffff;
+			   short c1=(short) ii;
 
 			if(yy2<yy1){
 				yy1=yy2;
@@ -84,12 +80,11 @@ namespace os
 			if(yy1>479)yy1=479;
 			if(yy2>479-1)yy2=479;
                        
-			location =  (640*2) * y + (x*2);
+			location =  (640) * y + (x);
 			steeps=yy2-yy1;
 			addss=640;
 			for(f=0;f<steeps;f++){
- 			    *((char *)(fbp +  location)) =c1;
-			    *((char *)(fbp +  location+1)) =c2;
+ 			    *((short *)(fbp +  location)) =c1;
 
 				location=location+addss;
 			}
@@ -104,11 +99,9 @@ namespace os
 			int steeps;
 			int location;
 			int addss;
-			char *fbp=(char * )0x04100000;
-			   int ii=colorss & 0xff;
-			   int iii=((colorss/256) & 0xff);
-			   char c1=(char) ii;
-			   char c2=(char) iii;
+			short *fbp=(short * )0x04100000;
+			   int ii=colorss & 0xffff;
+			   short c1=(short) ii;
 
 			if(xx2<xx1){
 				xx1=xx2;
@@ -121,12 +114,12 @@ namespace os
 			if(xx1>639)xx1=639;
 			if(xx2>639)xx2=639;
                        
-			location =  (640 *2) * y + (x*2);
+			location =  (640) * y + (x);
 			steeps=xx2-xx1;
 			addss=1;
 			for(f=0;f<steeps;f++){
- 			    *((char *)(fbp + location)) =c1;
-			    *((char *)(fbp +  location+1)) =c2;
+ 			    *((short *)(fbp + location)) =c1;
+			    
 		
 				location=location+addss;
 			}
@@ -136,14 +129,12 @@ namespace os
 		unsafe public static void clear(int colorss) 
 		  {
 			  			   // Clear the screen 
-			   int ii=colorss & 0xff;
-			   int iii=((colorss/256) & 0xff);
-			   char c1=(char) ii;
-			   char c2=(char) iii;
-			   char *fbp=(char * )0x04100000;
+			   int ii=colorss & 0xffff;
+			   short c1=(short) ii;
+			   short *fbp=(short * )0x04100000;
 			   for(int i = 0; i < 640 * 480 * 2 ; i=i+2){
-			    *((char *)(fbp + i)) =c1;
-			    *((char *)(fbp + i+1)) =c2;
+			    *((short *)(fbp + i)) =c1;
+			    
 			    
 			   
 			}
