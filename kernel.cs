@@ -2,7 +2,7 @@ namespace os
 {
 	public class oss
 	{	public static int rgb(int r, int g,int b){
-				return ((r & 63)<<11) | ((g & 63) << 5) | (b & 63);
+				return ((r & 63)*1024) | ((g & 63) *16) | (b & 63);
 		}
 		unsafe public static void boxs(int x,int y,int x2,int y2,int colorss)
 		{
@@ -22,7 +22,7 @@ namespace os
 			int addss2;
 			char *fbp=(char * )0x04100000;
 			   int ii=colorss & 0xff;
-			   int iii=((colorss >> 8) & 0xff);
+			   int iii=((colorss /256) & 0xff);
 			   char c1=(char) ii;
 			   char c2=(char) iii;
 			if(xx2<xx1){
@@ -69,7 +69,7 @@ namespace os
 			int addss;
 			char *fbp=(char * )0x04100000;
 			   int ii=colorss & 0xff;
-			   int iii=((colorss >> 8) & 0xff);
+			   int iii=((colorss /256) & 0xff);
 			   char c1=(char) ii;
 			   char c2=(char) iii;
 
@@ -106,7 +106,7 @@ namespace os
 			int addss;
 			char *fbp=(char * )0x04100000;
 			   int ii=colorss & 0xff;
-			   int iii=((colorss >> 8) & 0xff);
+			   int iii=((colorss/256) & 0xff);
 			   char c1=(char) ii;
 			   char c2=(char) iii;
 
@@ -137,7 +137,7 @@ namespace os
 		  {
 			  			   // Clear the screen 
 			   int ii=colorss & 0xff;
-			   int iii=((colorss >> 8) & 0xff);
+			   int iii=((colorss/256) & 0xff);
 			   char c1=(char) ii;
 			   char c2=(char) iii;
 			   char *fbp=(char * )0x04100000;
